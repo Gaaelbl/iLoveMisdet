@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Un poco de nosotros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;1,400;1,700&family=Yeseva+One&family=IM+Fell+English:ital@0;1&family=Crimson+Pro:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #fff5f0 0%, #ffe4e8 50%, #ffd9e0 100%);
+      font-family: 'Crimson Pro', serif;
+      position: relative;
+    }
+
+    .collage-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 1.2rem 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .titulo-collage {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .titulo-collage h1 {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 3.5rem;
+      color: #b53b4a;
+      text-shadow: 2px 2px 6px rgba(180, 60, 80, 0.15);
+      letter-spacing: 2px;
+    }
+    .titulo-collage p {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      color: #b35d6e;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .galeria-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card-foto {
+      width: 100%;
+      background: #fffef7;
+      border-radius: 28px;
+      box-shadow: 0 20px 30px -12px rgba(150, 50, 70, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(230, 160, 180, 0.4);
+    }
+    .card-foto:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 28px 36px -14px rgba(150, 50, 70, 0.35);
+    }
+
+    .marco-foto {
+      background: #ffffff;
+      padding: 18px 18px 8px 18px;
+      border-radius: 20px 20px 16px 16px;
+      margin: 16px 16px 0 16px;
+      box-shadow: inset 0 0 0 1px rgba(200, 120, 140, 0.2), 0 4px 12px rgba(0,0,0,0.02);
+    }
+    .marco-foto img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      border-radius: 14px;
+      background: #f2e6e0;
+    }
+
+       .marco-foto.rectangular img {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .marco-foto.vertical {
+      padding: 12px 12px 8px 12px;
+    }
+    .marco-foto.vertical img {
+      aspect-ratio: 9 / 16;
+      object-fit: contain;
+      width: 100%;
+      height: auto;
+      background: #f2e6e0;
+    }
+
+    .texto-foto {
+      padding: 1.2rem 1rem 1.5rem;
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #3e2a27;
+      text-align: left;
+      background: linear-gradient(120deg, #fffaf5, #fff5ed);
+      margin: 10px 16px 22px 16px;
+      border-radius: 18px;
+      border-left: 3px solid #e6a0b0;
+      border-right: 1px solid #f0cdd4;
+      box-shadow: inset 0 1px 3px rgba(255,245,235,0.8), 0 2px 5px rgba(0,0,0,0.02);
+    }
+    .texto-foto p {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .btn-carta {
+      text-align: center;
+      margin: 2rem auto 1rem;
+      position: relative;
+      z-index: 10;
+    }
+    .btn-carta button {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, #d47a8a, #b53b4a);
+      border: none;
+      padding: 12px 32px;
+      border-radius: 48px;
+      color: #fff9f5;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(180, 50, 80, 0.35);
+      transition: all 0.25s ease;
+    }
+    .btn-carta button:hover {
+      transform: scale(1.02);
+      background: linear-gradient(135deg, #e08a9a, #c74b5a);
+      box-shadow: 0 10px 24px rgba(180, 50, 80, 0.45);
+    }
+
+    .heart-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 1rem;
+      animation: floatUp linear infinite;
+      pointer-events: none;
+      user-select: none;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.6;
+      }
+      80% {
+        opacity: 0.25;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .collage-container {
+        padding: 1.2rem 0.8rem 3rem;
+      }
+      .titulo-collage h1 {
+        font-size: 2.3rem;
+      }
+      .marco-foto {
+        padding: 12px 12px 6px 12px;
+      }
+      .texto-foto {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="heart-bg" id="heartBg"></div>
+
+<div class="collage-container">
+  <div class="titulo-collage">
+    <h1>⋆ ˚｡⋆୨ Mis recuerdos mas especiales de ti ୧⋆ ˚｡⋆</h1>
+    <p>cada imagen guarda un pedacito de lo que somos</p>
+  </div>
+
+  <div class="galeria-vertical">
+    <!-- FOTO 1 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto1.jpeg" alt="Recuerdo 1" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto1.jpeg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ El gran momento donde decidí dar un paso adelante a pesar del miedo y del posible rechazo que en ese momento veía muy posible, pero no le di tanta importancia porque mi amor por ti siempre superará cualquier obstáculo.  (˶ᵔ ᵕ ᵔ˶) ‹𝟹 ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 2 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto2.jpg" alt="Recuerdo 2" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto2.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Cómo voy a poder olvidar el gran momento en el que me inspiré tanto en todo lo que sentía por ti que nos dibujé en forma de gatitos, si de por si el sentimiento del amor es increíble, contigo siempre se vuelve infinitamente mucho mejor y eso es porque tú siempre serás mi inmenso amor.  ₍₍⚞(˶˃ ꒳ ˂˶)⚟⁾⁾ ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 3 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto3.jpg" alt="Recuerdo 3" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto3.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Cómo voy a olvidar la noche en que todo cambió, la noche en la que me di cuenta de que eras tú y nadie más, la noche en la que tuve el gran placer de conocerte, escucharte y sobre todo estar a tu lado, sin duda siempre voy a atesorar ese momento pase lo que pase, porque contigo todo se vuelve tan especial que no existen palabras suficientes para describir lo que siento al respecto, te amo.  ૮꒰ ˶• ༝ •˶꒱ა ♡ ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 4 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto4.jpg" alt="Recuerdo 4" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto4.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Amé sin duda el primer fondo que tuve de ti, tú puedes verlo como algo súper sencillo, pero yo ahí veo mucho más que eso y siempre veré en ti mucho más de lo que tú misma ves, ojalá algún día pueda mostrarte el reflejo de lo grandiosa que eres incluso en la más mínima cosa, porque para mí cada detalle tuyo tiene algo especial que me hace admirarte y quererte aún más. ₍^. .^₎Ⳋ ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 5 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto5.jpg" alt="Recuerdo 5" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto5.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Esa foto que hiciste para mí fue súper, pero superrr especial, el hecho de que te tomes parte de tu tiempo para hacer algo pensando en mí es simplemente increíble, porque todo lo que haces lo vuelves increíble, y saber que dedicaste un momento de tu día para crear algo para mí hizo que esa foto tuviera un valor enorme en mi corazón.  (っ˶ ˘ ᵕ˘)ˆᵕ ˆ˶ς) ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 6 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto6.jpg" alt="Recuerdo 6" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto6.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ No te voy a mentir, lo sentí como una indirecta y por eso lo guardé, pero que quede claro que yo siempre voy a respetar a mis 7 socios y sobre todo a Kim Tae-hyung JASJKAJSAKJ, yo sé que él siempre va a ir primero.  (˶˃𐃷˂˶) ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 7 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto7.jpeg" alt="Recuerdo 7" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto7.jpeg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ La vez que lloré haciendo un proyecto, literalmente eras tú en todos lados, detalles y cositas que me recordaban a ti, aunque me dolió hacerlo, nunca me arrepentí de nada, porque todo lo que hago por ti me nace del corazón, así como me nace quererte y amarte cada día de mi vida, porque incluso en los momentos más difíciles siempre encuentro una razón para seguir adelante cuando pienso en ti.  ૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 8 (imagen desplazada a la izquierda dentro del marco) -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto8.jpg" alt="Recuerdo 8" style="object-position: left center;" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto8.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Yo todo esquizo tomándole foto a una de las mejores llamadas de mi vida, un gran paso para nuestras futuras madrugadas en dc JSJKASJAKSJA.  :꣓ ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 9 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto9.jpg" alt="Recuerdo 9" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto9.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Mi primer ataque de celos y el momento en el que me di cuenta de algo que jamás había sentido así, porque por primera vez no quería que alguien más escuchara tus risas, tus bostezos, tus historias o esos pequeños detalles tuyos que para muchos podrían parecer simples, pero que para mí son un tesoro. Me descubrí pensando que daría cualquier cosa por seguir siendo la persona que escucha cómo estuvo tu día, la que se ríe contigo a las tres de la mañana y la que conoce todas esas versiones de ti que no todos tienen la suerte de ver, y sí, admito que los celos aparecieron cuando imaginé que otro hombre pudiera disfrutar de tu compañía, escuchar tu voz o compartir momentos contigo, no porque dude de ti, sino porque me encantaría ser yo quien tenga el privilegio de seguir descubriendo cada una de tus historias, de escuchar cada una de tus ocurrencias y de seguir enamorándome de todos esos detalles que te hacen ser tú, en fin no respires el mismo aire que los hombres amor uwU #humor.  ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 10 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto10.png" alt="Recuerdo 10" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto10.png'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Cómo no voy a atesorar tu playlist hermosa, amorrr, la amo. Siempre que tenía tiempo me ponía a escucharla, porque era una manera de sentir que estabas a mi lado escuchándola conmigo. Cada canción se volvió especial porque venía de ti, y de alguna forma me hacía sentir más cerca de ti incluso cuando no podíamos estar juntos. (╥‸╥) ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 11 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto11.jpg" alt="Recuerdo 11" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto11.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ El dulce que define toda mi vida, no hay más. ( ˶˘ ³˘)♡ ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 12 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto12.jpg" alt="Recuerdo 12" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto12.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ AMOOOO todas las fotos que me mandas de tus hijos, todas de verdad, son tan tiernos y tan adorables que cada foto me saca una sonrisa, pero lo que más me gusta es saber que son así gracias a la grandiosa persona que tienen a su lado, porque tú les das amor, cariño y una compañía que vale muchísimo más de lo que imaginas, siempre he pensado que eres una persona maravillosa y única, de esas que dejan una huella bonita en todo lo que tocan, por eso cada vez que veo una foto de ellos también veo un reflejo de ti, de tu forma de ser y de todo lo bueno que llevas dentro.   ૮꒰ ྀི >⸝⸝⸝< ྀི꒱ა ✧</p>
+    </div>
+
+    <!-- FOTO 13 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto13.jpg" alt="Recuerdo 13" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto13.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Como tu fan número uno, siempre le voy a prestar atención a todo lo que compartes, aunque sea lo más mínimo, porque tú siempre tendrás toda mi atención a tu disposición, me encanta conocer cada pequeño detalle de tu día, tus gustos, tus pensamientos y todas esas cositas que te hacen ser quien eres, para mí nunca serán cosas insignificantes, porque cuando se trata de ti, hasta el detalle más pequeño se vuelve especial. ૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 14 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto14.jpg" alt="Recuerdo 14" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto14.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Me dio ternura que hasta mi teléfono ya lo viera como algo que tenía que hacer todos los días, aunque yo nunca dudé de hacerlo, la verdad es que a mí siempre me dan ganas de escribirte porque hablar contigo se convirtió en una de mis partes favoritas del día, no importa si es para contarte algo importante, una tontería que me pasó o simplemente para saber cómo estás, siempre encuentro una razón para buscarte, al final escribirte nunca ha sido una obligación ni una costumbre, sino algo que me nace de forma natural, porque cada conversación contigo hace mis días mucho más bonitos, amor. 𐔌՞. .՞ 𐦯 ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 15 (imagen desplazada hacia arriba para ver el 3:33) -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto15.png" alt="Recuerdo 15" style="object-position: center -130px;" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto15.png'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Nuestra hora, siempre que puedo le tomo captura porque me gusta guardarla como un pequeño recuerdo de nosotros, me hace ilusión pensar que algún día podré juntar todas esas capturas y ver cuántas veces coincidimos con esa hermosa hora espejo que se volvió tan especial para nosotros, quizá para otras personas sea solo una hora más, pero para mí siempre tendrá algo bonito porque inevitablemente me hace pensar en ti y en todos los momentos que hemos compartido juntos.  ٩(ˊᗜˋ*)و ♡ ✧</p>
+      </div>
+    </div>
+
+
+    <!-- FOTO 16 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto16.jpg" alt="Recuerdo 16" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto16.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Obviiiiis iba a mencionar mi nuevo fondo de pantalla, lo adoro, no tienes idea de cuánto tiempo he querido tenerte de fondo, cada vez que veo mi teléfono me saca una sonrisa porque me recuerda a ti, aunque siendo sincero eso no se compara con la idea de tenerte de foto de perfil, de nombre en todas mis redes y básicamente convertirme en una fanpage oficial tuya KAJAJSAJA, porque si alguien me preguntara cuál es mi persona favorita no tendría ni que pensarlo dos veces, siempre serás tú.  (๑ᵔ⤙ᵔ๑) ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 17 -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto17.png" alt="Recuerdo 17" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto17.png'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Un simple regalito en el frifrai, pero la verdad es que yo siempre voy a romantizar hasta la mínima cosa que hagas, porque cuando algo viene de ti automáticamente se vuelve especial para mí, no importa si es un gran detalle o algo pequeñito, yo siempre voy a guardarlo con cariño porque significa que pensaste en mí aunque fuera por un momento, tú tírame de un edificio y yo voy a decir que lo hiciste porque no querías que tuviera miedo a las alturas Uwu, porque hasta este punto yo ya encontré la manera de convertir cualquier cosa que venga de ti en algo bonito.   (˵ • ᴗ - ˵ )  ✧</p>
+      </div>
+    </div>
+
+    <!-- FOTO 18 (marco vertical parado - captura completa) -->
+    <div class="card-foto">
+      <div class="marco-foto vertical">
+        <img src="img/foto18.jpg" alt="Recuerdo 18 - Captura" onerror="this.src='https://placehold.co/450x800/ffe0e6/cf8a9a?text=foto18.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ La dueña de todas mis madrugadaaas, te adoro, me encanta estar contigo, ya sea mientras jugamos, mientras estamos en dc o simplemente compartiendo cualquier momento, siempre voy a disfrutar estar a tu lado porque haces que todo se sienta más bonito y especial, nunca escucharás un no de mi parte si se trata de ti o de pasar tiempo contigo, porque sinceramente una de mis cosas favoritas es compartir mis días y mis noches contigo, escuchar tu voz, reír contigo y seguir creando recuerdos que voy a guardar con muchísimo cariño, porque no importa qué estemos haciendo, si es contigo siempre será uno de mis momentos favoritos. ˶ᵔ ᵕ ᵔ˶ ✧</p>
+      </div>
+    </div>
+
+  <!-- FOTO 19 (nueva) -->
+    <div class="card-foto">
+      <div class="marco-foto">
+        <img src="img/foto19.jpg" alt="Recuerdo 19" onerror="this.src='https://placehold.co/500x500/ffe0e6/cf8a9a?text=foto19.jpg'">
+      </div>
+      <div class="texto-foto">
+        <p>✧ Sé que faltaron muchos momentos más, incluso capturas mucho más especiales, pero voy a dejarlas para futuras cositas que te quiero hacer, un poco parecidas a esta, porque por suerte todavía me quedan muchísimos recuerdos por guardar contigo y muchas maneras de demostrarte lo importante que eres para mí;
+
+por último quería mencionar una foto que me pasaste hace ratito, porque se volvió especial desde el momento en que la vi, ya que salimos juntos en algo y eso automáticamente hizo que la guardara con muchísimo cariño, ojalá así sean todas nuestras futuras estadísticas en br y de;
+
+te adoro y espero que todas estas lindas palabras puedan hacerte entender aunque sea un poquititito de lo que siento por ti, porque la verdad es que ni todas estas capturas ni todas estas palabras alcanzan para explicar lo mucho que significas para mí, aún me faltan muchísimas cosas por hacer a tu lado, muchísimos recuerdos por crear contigo y muchísimos momentos que quiero seguir atesorando para siempre, porque si algo tengo claro es que todavía quiero seguir escribiendo muchas historias contigo, amor. 𐔌՞꜆. ̫.꜀՞𐦯 ✧</p>
+      </div>
+    </div>
+
+  <div class="btn-carta">
+    <button id="btnVolverCarta">✧  Sorpresa  ✧</button>
+  </div>
+</div>
+
+<script>
+     // ========== MÚSICA DE FONDO ==========
+  let cancion;
+  let musicaActiva = false;
+
+  function iniciarCancion() {
+    if (!musicaActiva) {
+      // Probamos con diferentes nombres
+      const posiblesNombres = ['LoveLove', 'LoveLove.mpeg', 'LoveLove.mp3', 'LoveLove.mp4'];
+      
+      function intentarReproducir(indice) {
+        if (indice >= posiblesNombres.length) {
+          console.log("No se pudo reproducir con ningún nombre");
+          return;
+        }
+        
+        try {
+          cancion = new Audio(posiblesNombres[indice]);
+          cancion.loop = true;
+          cancion.volume = 0.5;
+          
+          const playPromise = cancion.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              console.log("Canción reproduciéndose con: " + posiblesNombres[indice]);
+              musicaActiva = true;
+            }).catch(() => {
+              console.log("Falló con: " + posiblesNombres[indice]);
+              intentarReproducir(indice + 1);
+            });
+          }
+        } catch(e) {
+          intentarReproducir(indice + 1);
+        }
+      }
+      
+      intentarReproducir(0);
+      
+      document.removeEventListener('click', iniciarCancion);
+      document.removeEventListener('touchstart', iniciarCancion);
+    }
+  }
+
+  document.addEventListener('click', iniciarCancion);
+  document.addEventListener('touchstart', iniciarCancion);
+
+    const btnCarta = document.getElementById('btnVolverCarta');
+  if (btnCarta) {
+    btnCarta.addEventListener('click', () => {
+      if (cancion) {
+        cancion.pause();
+        cancion.currentTime = 0;
+      }
+      setTimeout(() => {
+        window.location.href = 'iLoveMisdet.html';
+      }, 50);
+    });
+  }
+
+  // ========== CORAZONES LLUVIENDO ==========
+  function crearCorazon() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    
+    const size = Math.floor(Math.random() * (24 - 9 + 1) + 9);
+    heart.style.fontSize = size + 'px';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.animationDuration = (Math.random() * (16 - 7) + 7) + 's';
+    heart.style.animationDelay = Math.random() * 15 + 's';
+    
+    const rosas = [
+      '#ffb7c5', '#ffc0cb', '#ffb3c6', '#f7a1c4', '#f2a0b5', '#f5b0c0',
+      '#ff99bb', '#ffb3ba', '#ffc2d1', '#f7c5cc', '#f2a0b0', '#e89bb0',
+      '#ffb7b2', '#f9acb5', '#fdafc8', '#eaa5b8', '#d989a5', '#f5b6c6',
+      '#ffc2d9', '#ffb4bd', '#ffabbb', '#ff9eb5', '#ffadb9', '#ffb8ca'
+    ];
+    heart.style.color = rosas[Math.floor(Math.random() * rosas.length)];
+    heart.style.opacity = Math.random() * 0.5 + 0.2;
+    
+    const corazonesChar = ['❤️', '💗', '💖', '💕', '💓', '💘', '🌸', '✨', '💞'];
+    heart.innerHTML = corazonesChar[Math.floor(Math.random() * corazonesChar.length)];
+    
+    document.getElementById('heartBg').appendChild(heart);
+    heart.addEventListener('animationend', () => heart.remove());
+  }
+  
+  setInterval(() => {
+    if (document.querySelectorAll('.heart').length < 70) {
+      const num = Math.floor(Math.random() * 3) + 1;
+      for (let i = 0; i < num; i++) crearCorazon();
+    }
+  }, 500);
+</script>
+</body>
+</html>
